@@ -100,7 +100,7 @@ export default {
           chart.user.repositoriesContributedTo.nodes.forEach(count)
           let coloropts = {
             count: Object.keys(chart.languages).length,
-            hue: 'blue',
+            hue: 'blue'
           }
           chart.labels = Object.keys(chart.languages).map(lang => {
             return `${lang} (${chart.languages[lang]})`

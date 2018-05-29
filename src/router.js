@@ -5,6 +5,7 @@ import AuthSuccess from './components/AuthSuccess.vue'
 // import User from './components/User'
 import Month from './components/github/Month'
 // import Repo from './components/Repo'
+import Org from './components/Org'
 
 const router = new VueRouter({
   mode: 'history',
@@ -13,6 +14,7 @@ const router = new VueRouter({
     { path: '/auth', component: Auth },
     { path: '/success', component: AuthSuccess },
     // { path: '/user/:user', component: User },
+    { path: '/github/org/:org', component: Org },
     { path: '/github/:year/:month', component: Month }
   ]
 })

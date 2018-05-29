@@ -3,7 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import firebase from 'firebase'
 import router from './router'
-import { Pie } from 'vue-chartjs'
+import { Pie, Bar, Line, mixins } from 'vue-chartjs'
 require('./firebase')
 
 Vue.config.productionTip = false
@@ -22,15 +22,68 @@ new Vue({
 
 Vue.component('pie-chart', {
   extends: Pie,
-  props: ['labels', 'datasets'],
+  props: ['chartData'],
+  mixins: [mixins.reactiveProp],
   mounted () {
-    this.renderChart({
-      labels: this.labels,
-      datasets: this.datasets
-    },
-    { responsive: true,
-      maintainAspectRatio: false
+    let opts = {
+      responsive: true,
+      maintainAspectRatio: true,
+      legend: false
     }
-    )
+    this.renderChart(this.chartData, opts)
+  }
+})
+
+Vue.component('fancy-bar', {
+  extends: Bar,
+  props: ['chartData'],
+  mixins: [mixins.reactiveProp],
+  mounted () {
+    let opts = {
+      responsive: true,
+      maintainAspectRatio: true,
+      legend: false,
+      scales: {
+        xAxes: [{
+          stacked: true,
+          ticks: {
+            fontFamily: 'Courier'
+          }
+        }],
+        yAxes: [{
+          stacked: true,
+          ticks: {
+            fontFamily: 'Courier'
+          }
+        }]
+      }
+    }
+    this.renderChart(this.chartData, opts)
+  }
+})
+
+Vue.component('fancy-line', {
+  extends: Line,
+  props: ['chartData'],
+  mixins: [mixins.reactiveProp],
+  mounted () {
+    let opts = {
+      responsive: true,
+      maintainAspectRatio: true,
+      legend: false,
+      scales: {
+        xAxes: [{
+          ticks: {
+            fontFamily: 'Courier'
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            fontFamily: 'Courier'
+          }
+        }]
+      }
+    }
+    this.renderChart(this.chartData, opts)
   }
 })

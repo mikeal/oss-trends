@@ -12,7 +12,7 @@ export default {
     let uiConfig = {
       signInSuccessUrl: '/success',
       signInOptions: [
-        firebase.auth.GithubAuthProvider.PROVIDER_ID
+        { provider: firebase.auth.GithubAuthProvider.PROVIDER_ID }
       ],
       callbacks: {
         signInSuccess: (user, credential, redirect) => {
