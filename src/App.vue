@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="App">
     <router-view></router-view>
   </div>
 </template>
@@ -11,11 +11,5 @@ export default {
 </script>
 
 <style>
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import '../node_modules/ipfs-css/ipfs.css'
 </style>

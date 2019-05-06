@@ -11,6 +11,22 @@ const clearCache = () => {
   return cache.destroy()
 }
 
+const getRepo = async name => {
+  let _key = `gh-graphql/${name}/info.json`
+  let info = await getOrNull(_key)
+  if (!info) {
+    let query = `
+    query {
+      organization (login: "${org}") {
+        members {
+          totalCount
+        }
+      }
+    }
+    `
+  }
+}
+
 const processRepoNode = node => {
   node.name = node.nameWithOwner.slice(node.nameWithOwner.indexOf('/') + 1)
   node.issueCount = node.issues.totalCount
@@ -152,11 +168,11 @@ const _loadOrgData = async (org, info, page = null) => {
             }
             forks (first: 100, ${order('CREATED_AT')}  ) {
               totalCount
-              owner
               nodes {
                 createdAt
                 updatedAt
                 id
+                nameWithOwner
               }
             }
           }

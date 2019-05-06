@@ -7,40 +7,44 @@
       </fancy-line>
     </div>
     <div class="settings">
-      <div class="graph-data">
+      <div class="graph-data setting-group">
         <div class="settings-header">
           Graph Data:
         </div>
-        <input type="radio" id="created" value="created" v-model="type">
-        <label for="created">Created</label>
-        <input type="radio" id="people" value="people" v-model="type">
-        <label for="people">People</label>
+        <div class="settings-options">
+          <input type="radio" id="created" value="created" v-model="type">
+          <label for="created">Created</label>
+          <input type="radio" id="people" value="people" v-model="type">
+          <label for="people">People</label>
+        </div>
       </div>
-      <div class="graph-filters">
+      <div class="graph-filters setting-group">
         <div class="settings-header">
           Include:
-
         </div>
-        <input type="checkbox" id="issues" v-model="includeData.issues" />
-        <label for="issues">Issues</label>
-        <input type="checkbox" id="pullRequests" v-model="includeData.pullRequests" />
-        <label for="pullRequests">Pull Requests</label>
-        <input type="checkbox" id="forks" v-model="includeData.forks" />
-        <label for="forks">Forks</label>
-
+        <div class="settings-options">
+          <input type="checkbox" id="issues" v-model="includeData.issues" />
+          <label for="issues">Issues</label>
+          <input type="checkbox" id="pullRequests" v-model="includeData.pullRequests" />
+          <label for="pullRequests">Pull Requests</label>
+          <input type="checkbox" id="forks" v-model="includeData.forks" />
+          <label for="forks">Forks</label>
+        </div>
       </div>
-      <div class="graph-type">
+      <div class="graph-type setting-group">
         <div class="settings-header">
           Graph Type:
         </div>
-        <input v-if="type === 'created'" type="radio" id="bar" value="bar" v-model="graphType">
-        <label v-if="type === 'created'" for="bar">Bar</label>
+        <div class="settings-options">
+          <input v-if="type === 'created'" type="radio" id="bar" value="bar" v-model="graphType">
+          <label v-if="type === 'created'" for="bar">Bar</label>
 
-        <input v-if="type === 'people'" type="radio" id="pie" value="pie" v-model="graphType">
-        <label v-if="type === 'people'"  for="line">Pie</label>
+          <input v-if="type === 'people'" type="radio" id="pie" value="pie" v-model="graphType">
+          <label v-if="type === 'people'"  for="line">Pie</label>
 
-        <input type="radio" id="line" value="line" v-model="graphType">
-        <label for="line">Line</label>
+          <input type="radio" id="line" value="line" v-model="graphType">
+          <label for="line">Line</label>
+        </div>
       </div>
     </div>
   </div>
@@ -208,6 +212,19 @@ export default {
 
 <style scoped>
 div.chart {
-  max-width: 300px;
+  max-width: 400px;
+}
+div.repos-chart {
+  display: grid;
+  grid-template-columns: 400px auto;
+  justify-content: start;
+}
+div.repos-chart * {
+  place-self: start;
+  text-align: left;
+}
+div.setting-group {
+  display: grid;
+  grid-template-columns: 120px auto;
 }
 </style>

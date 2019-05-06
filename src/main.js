@@ -4,10 +4,17 @@ import VueRouter from 'vue-router'
 import firebase from 'firebase'
 import router from './router'
 import { Pie, Bar, Line, mixins } from 'vue-chartjs'
+import VueTimeago from 'vue-timeago'
 require('./firebase')
+require('../node_modules/ipfs-css/ipfs.css')
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
+
+Vue.use(VueTimeago, {
+  name: 'Timeago', // Component name, `Timeago` by default
+  locale: 'en'
+})
 
 new Vue({
   router,
